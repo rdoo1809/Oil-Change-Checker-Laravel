@@ -30,12 +30,7 @@ class VehiklController extends Controller
 
     public function show(Vehikl $vehikl)
     {
-        $distanceDue = ($vehikl->current_odometer - $vehikl->previous_odometer) > 5000;
-        $dateDue = Carbon::parse($vehikl->previous_oil_change_date)
-            ->addMonths(6)
-            ->isPast();
-
-        $due = $distanceDue || $dateDue;
+        $due = $this->isDue($vehikl);
 
         return response()->json([
             'id' => $vehikl->id,
@@ -46,6 +41,18 @@ class VehiklController extends Controller
             'message' => $due ? 'Oil change is due.' : 'Oil change is not due.',
         ]);
     }
+
+    protected function isDue(Vehikl $vehikl): bool
+    {
+        $distanceDue = ($vehikl->current_odometer - $vehikl->previous_odometer) > 5000;
+
+        $dateDue = Carbon::parse($vehikl->previous_oil_change_date)
+            ->addMonths(6)
+            ->isPast();
+
+        return $distanceDue || $dateDue;
+    }
+
 
     /**
      * Display a listing of the resource.
