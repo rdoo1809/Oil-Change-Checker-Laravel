@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VehiklRequest;
 use App\Models\Vehikl;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class VehiklController extends Controller
 {
-    public function store(Request $request)
+    public function store(VehiklRequest $request)
     {
-        $validated = $request->validate([
-            'current_odometer' => ['required', 'integer', 'min:0'],
-            'previous_odometer' => ['required', 'integer', 'min:0', 'lte:current_odometer'],
-            'previous_oil_change_date' => ['required', 'date', 'before:today'],
-        ]);
-
-        $vehikl = Vehikl::create($validated);
-
+        $vehikl = Vehikl::create($request->validated());
+//        return redirect()->route('vehikl.show', $vehikl);
         return response()->json([
             'id' => $vehikl->id,
             'current_odometer' => $vehikl->current_odometer,
