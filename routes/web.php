@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\VehiklController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,6 +9,10 @@ Route::get('/', function () {
 });
 
 Route::controller(VehiklController::class)->group(function () {
-    Route::post('/check', 'store')->name('vehikl.store');
-    Route::get('/result/{vehikl}', 'show')->name('vehikl.show');
+    Route::post('/check', 'store')
+        ->name('vehikl.store')
+        ->withoutMiddleware([VerifyCsrfToken::class]);
+    Route::get('/result/{vehikl}', 'show')
+        ->name('vehikl.show')
+        ->withoutMiddleware([VerifyCsrfToken::class]);
 });
