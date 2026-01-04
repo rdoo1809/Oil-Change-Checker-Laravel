@@ -19,8 +19,11 @@ COPY . .
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Expose port Render provides
+# Ensure SQLite database exists
+RUN touch database/database.sqlite
+
+# Expose the port
 EXPOSE 8000
 
-# Start Laravel
+# Start Laravel with migrations
 CMD php artisan migrate --force && php -S 0.0.0.0:$PORT -t public
