@@ -1,3 +1,4 @@
+# Use official PHP 8.3 CLI image
 FROM php:8.3-cli
 
 # Install system dependencies
@@ -13,7 +14,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www
 
-# Copy application files
+# Copy all application files
 COPY . .
 
 # Install PHP dependencies
@@ -22,7 +23,7 @@ RUN composer install --no-dev --optimize-autoloader
 # Ensure SQLite database exists
 RUN touch database/database.sqlite
 
-# Expose the port
+# Expose the port that Render provides
 EXPOSE 8000
 
 # Start Laravel with migrations
