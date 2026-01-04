@@ -14,6 +14,16 @@ A car is considered **due for an oil change** if **either** of the following con
 
 ---
 
+## Requirements
+
+- PHP 8.2+
+- Composer
+- Laravel 12
+- SQLite (included with PHP by default)
+- No frontend build tools or JavaScript frameworks required
+
+---
+
 ## Features
 
 - Submit car details via a simple web form:
