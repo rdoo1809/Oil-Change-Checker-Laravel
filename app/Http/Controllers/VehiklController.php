@@ -10,13 +10,6 @@ class VehiklController extends Controller
 {
     public function index()
     {
-//        $vehikls = Vehikl::all()->map(function ($vehikl) {
-//            return [
-//                'vehikl' => $vehikl,
-//                'due' => $vehikl->isDue()
-//            ];
-//        });
-
         $vehikls = Vehikl::all();
         return view('history', compact('vehikls'));
     }

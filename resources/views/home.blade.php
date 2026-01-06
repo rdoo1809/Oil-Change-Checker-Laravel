@@ -20,20 +20,19 @@
 <form action="{{ route('vehikl.store') }}" method="POST">
     @csrf
 
-    <div style="margin-bottom: 10px;">
-        <label for="current_odometer">Current Odometer:</label><br>
-        <input type="number" name="current_odometer" id="current_odometer" value="{{ old('current_odometer') }}" required>
-    </div>
+    <x-oil-change-form-input form-field="current_odometer" label-text="Current Odometer" input-type="number"
+                             :input-value-old="$vehikl->previous_odometer ?? null"
+    />
 
-    <div style="margin-bottom: 10px;">
-        <label for="previous_odometer">Odometer at Previous Oil Change:</label><br>
-        <input type="number" name="previous_odometer" id="previous_odometer" value="{{ old('previous_odometer') }}" required>
-    </div>
+    <x-oil-change-form-input form-field="previous_odometer" label-text="Odometer at Previous Oil Change"
+                             input-type="number"
+                             :input-value-old="$vehikl->previous_odometer ?? null"
+    />
 
-    <div style="margin-bottom: 10px;">
-        <label for="previous_oil_change_date">Date of Previous Oil Change:</label><br>
-        <input type="date" name="previous_oil_change_date" id="previous_oil_change_date" value="{{ old('previous_oil_change_date') }}" required>
-    </div>
+    <x-oil-change-form-input form-field="previous_oil_change_date" label-text="Date of Previous Oil Change"
+                             input-type="date"
+                             :input-value-old="$vehikl->previous_oil_change_date ?? null"
+    />
 
     <button type="submit" style="padding: 5px 10px;">Check</button>
 </form>
