@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\VehiklRequest;
 use App\Models\Vehikl;
-use Carbon\Carbon;
+use App\Services\OilChangeService;
 
 class VehiklController extends Controller
 {
@@ -20,9 +20,9 @@ class VehiklController extends Controller
         return redirect()->route('vehikl.show', $vehikl);
     }
 
-    public function show(Vehikl $vehikl)
+    public function show(Vehikl $vehikl, OilChangeService $oilChangeService)
     {
-        $due = $vehikl->isDue();
+        $due = $oilChangeService->isDue($vehikl);
         return view('show', [
             'vehikl' => $vehikl,
             'due' => $due,
