@@ -9,6 +9,7 @@ Route::get('/', function () {
 });
 
 Route::controller(VehiklController::class)->group(function () {
+
     Route::post('/check', 'store')
         ->name('vehikl.store')
         ->withoutMiddleware([VerifyCsrfToken::class]);

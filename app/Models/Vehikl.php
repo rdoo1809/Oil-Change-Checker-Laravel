@@ -13,6 +13,11 @@ class Vehikl extends Model
         'previous_oil_change_date',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function isDue(): bool
     {
         $distanceDue = ($this->current_odometer - $this->previous_odometer) > 5000;

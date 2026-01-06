@@ -10,16 +10,15 @@ class VehiklController extends Controller
 {
     public function index()
     {
-        $vehikls = Vehikl::all();
+//        $vehikls = Vehikl::all()->map(function ($vehikl) {
+//            return [
+//                'vehikl' => $vehikl,
+//                'due' => $vehikl->isDue()
+//            ];
+//        });
 
-        return response()->json([
-            $vehikls->map(function ($vehikl) {
-                return [
-                    'vehikl' => $vehikl,
-                    'due' => $vehikl->isDue()
-                ];
-            })
-        ]);
+        $vehikls = Vehikl::all();
+        return view('history', compact('vehikls'));
     }
 
     public function store(VehiklRequest $request)
@@ -31,7 +30,6 @@ class VehiklController extends Controller
     public function show(Vehikl $vehikl)
     {
         $due = $vehikl->isDue();
-
         return view('show', [
             'vehikl' => $vehikl,
             'due' => $due,
