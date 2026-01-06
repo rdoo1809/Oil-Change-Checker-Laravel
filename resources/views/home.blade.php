@@ -31,6 +31,7 @@
 
     <form action="{{ route('vehikl.store') }}" method="POST">
         @csrf
+        <input type="hidden" name="car_id" value="{{$selectedCar->id}}" />
 
         <x-oil-change-form-input form-field="current_odometer" label-text="Current Odometer" input-type="number"
                                  :input-value-old="$vehikl->previous_odometer ?? null"

@@ -14,6 +14,7 @@ class VehiklRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'car_id' => ['required', 'exists:cars,id'],
             'current_odometer' => ['required', 'integer', 'min:0'],
             'previous_odometer' => ['required', 'integer', 'min:0', 'lte:current_odometer'],
             'previous_oil_change_date' => ['required', 'date', 'before:today'],

@@ -12,6 +12,7 @@ class Vehikl extends Model
         'current_odometer',
         'previous_odometer',
         'previous_oil_change_date',
+        'car_id'
     ];
 
     protected $hidden = [
