@@ -20,9 +20,9 @@ class VehiklController extends Controller
         return redirect()->route('vehikl.show', $vehikl);
     }
 
-    public function show(Vehikl $vehikl, OilChangeService $oilChangeService)
+    public function show(Vehikl $vehikl)
     {
-        $due = $oilChangeService->isDue($vehikl);
+        $due = app(OilChangeService::class)->isDue($vehikl);
         return view('show', [
             'vehikl' => $vehikl,
             'due' => $due,
