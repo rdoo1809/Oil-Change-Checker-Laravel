@@ -8,6 +8,20 @@ use Carbon\Carbon;
 
 class VehiklController extends Controller
 {
+    public function index()
+    {
+        $vehikls = Vehikl::all();
+
+        return response()->json([
+            $vehikls->map(function ($vehikl) {
+                return [
+                    'vehikl' => $vehikl,
+                    'due' => $vehikl->isDue()
+                ];
+            })
+        ]);
+    }
+
     public function store(VehiklRequest $request)
     {
         $vehikl = Vehikl::create($request->validated());
@@ -24,6 +38,9 @@ class VehiklController extends Controller
             'message' => $due ? 'Oil change is due.' : 'Oil change is not due.',
         ]);
     }
+
+
+
 //        return response()->json([
 //            'id' => $vehikl->id,
 //            'current_odometer' => $vehikl->current_odometer,
