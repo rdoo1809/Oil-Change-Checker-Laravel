@@ -8,13 +8,7 @@
 <h1 style="font-size: 24px; margin-bottom: 20px;">Oil Change Checker</h1>
 
 @if ($errors->any())
-    <div style="color: red; margin-bottom: 20px;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+    <x-oil-change-form-errors :errors="$errors"/>
 @endif
 
 <form action="{{ route('vehikl.store') }}" method="POST">
