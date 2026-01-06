@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(CarController::class)->group(function () {
     Route::get('/', 'index')->name('cars.index');
+    Route::post('/add-car', 'store')->name('cars.store');
 });
 
 Route::controller(VehiklController::class)->group(function () {

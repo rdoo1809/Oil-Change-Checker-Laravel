@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
+use League\CommonMark\Extension\Attributes\Node\Attributes;
 
 class CarController extends Controller
 {
@@ -11,53 +12,21 @@ class CarController extends Controller
     {
         $cars = Car::all();
         $selectedCar = \request('car_id') ? Car::find(\request('car_id')) : null;
-        return view('home', compact('cars', 'selectedCar'));
+        $addNewCar = \request('add_new_car') ? true : false;
+        return view('home', compact('cars', 'selectedCar', 'addNewCar'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $selectedCar = Car::create($request->only('make', 'model', 'year'));
+        return view('home', compact('selectedCar'));
     }
 
     /**
      * Display the specified resource.
      */
     public function show(Car $car)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Car $car)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Car $car)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Car $car)
     {
         //
     }
