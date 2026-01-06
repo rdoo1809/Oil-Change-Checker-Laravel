@@ -7,12 +7,11 @@ use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $cars = Car::all();
+        $selectedCar = \request('car_id') ? Car::find(\request('car_id')) : null;
+        return view('home', compact('cars', 'selectedCar'));
     }
 
     /**

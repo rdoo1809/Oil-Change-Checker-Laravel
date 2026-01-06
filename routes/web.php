@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\VehiklController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
+Route::controller(CarController::class)->group(function () {
+    Route::get('/', 'index')->name('cars.index');
 });
 
 Route::controller(VehiklController::class)->group(function () {
