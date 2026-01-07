@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\Vehikl;
+use App\Services\OilChangeService;
 use Illuminate\Http\Request;
 use League\CommonMark\Extension\Attributes\Node\Attributes;
 
@@ -25,11 +27,10 @@ class CarController extends Controller
         return view('dashboard', compact('selectedCar'));
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Car $car)
     {
-        //
+        $vehikls = Vehikl::all()->where('car_id', $car->id);
+        $oilChangeService = app(OilChangeService::class);
+        return view('history', compact('vehikls', 'oilChangeService', 'car'));
     }
 }

@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
 Route::controller(CarController::class)->group(function () {
     Route::get('/cars', 'index')->name('cars.index');
     Route::post('/add-car', 'store')->name('cars.store');
+    Route::get('/cars/{car}', 'show')->name('cars.show');
 });
 
 Route::middleware('auth')->controller(VehiklController::class)->group(function () {
