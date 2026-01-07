@@ -21,7 +21,7 @@
     @endforeach
 </div>
 
-<a href="{{ url('/') }}" style="display: inline-block; margin-top: 20px; text-decoration: underline;">Check another
+<a href="{{ url('/dashboard') }}" style="display: inline-block; margin-top: 20px; text-decoration: underline;">Check another
     car
 </a>
 </body>

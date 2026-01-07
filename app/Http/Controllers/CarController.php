@@ -13,14 +13,14 @@ class CarController extends Controller
         $cars = Car::all();
         $selectedCar = \request('car_id') ? Car::find(\request('car_id')) : null;
         $addNewCar = \request('add_new_car') ? true : false;
-        return view('home', compact('cars', 'selectedCar', 'addNewCar'));
+        return view('dashboard', compact('cars', 'selectedCar', 'addNewCar'));
     }
 
 
     public function store(Request $request)
     {
         $selectedCar = Car::create($request->only('make', 'model', 'year'));
-        return view('home', compact('selectedCar'));
+        return view('dashboard', compact('selectedCar'));
     }
 
     /**
