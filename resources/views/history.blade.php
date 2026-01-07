@@ -13,6 +13,7 @@
     @foreach ($vehikls as $vehikl)
         <div style="border: #0a0a0a 1px solid">
             <p><strong>Car ID:</strong> {{$vehikl->car->make . " " . $vehikl->car->model}}</p>
+            <p><strong>User ID:</strong> {{$vehikl->car->user->name}}</p>
             <p><strong>Vehikl ID:</strong> {{ $vehikl->id }}</p>
             <p><strong>Current Odometer:</strong> {{ $vehikl->current_odometer }}</p>
             <p><strong>Previous Odometer:</strong> {{ $vehikl->previous_odometer }}</p>
