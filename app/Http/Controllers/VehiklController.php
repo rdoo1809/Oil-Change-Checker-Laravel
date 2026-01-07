@@ -11,7 +11,8 @@ class VehiklController extends Controller
     public function index()
     {
         $vehikls = Vehikl::all();
-        return view('history', compact('vehikls'));
+        $oilChangeService = app(OilChangeService::class);
+        return view('history', compact('vehikls', 'oilChangeService'));
     }
 
     public function store(VehiklRequest $request)

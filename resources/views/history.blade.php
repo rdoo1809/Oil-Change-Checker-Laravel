@@ -11,11 +11,12 @@
 <div>
     @foreach ($vehikls as $vehikl)
         <div style="border: #0a0a0a 1px solid">
+            <p><strong>Car ID:</strong> {{$vehikl->car->make . " " . $vehikl->car->model}}</p>
             <p><strong>Vehikl ID:</strong> {{ $vehikl->id }}</p>
             <p><strong>Current Odometer:</strong> {{ $vehikl->current_odometer }}</p>
             <p><strong>Previous Odometer:</strong> {{ $vehikl->previous_odometer }}</p>
             <p><strong>Date of Previous Oil Change:</strong> {{ $vehikl->previous_oil_change_date }}</p>
-            <p><strong>Is Due:</strong> {{ $vehikl->isDue() }}</p>
+            <p><strong>Is Due:</strong> {{ $oilChangeService->isDue($vehikl) }}</p>
         </div>
     @endforeach
 </div>

@@ -42,7 +42,8 @@
     @endif
 
 @elseif($selectedCar)
-    <h4>{{"$selectedCar->make $selectedCar->model" }} <a href="{{route('cars.index')}}">deselect car</a></h4>
+    <h4>{{"$selectedCar->make $selectedCar->model"}} <a href="{{route('cars.index')}}">deselect car</a> -
+        <a href="{{route('cars.show')}}">view car history</a></h4>
 
     @if ($errors->any())
         <x-oil-change-form-errors :errors="$errors"/>
