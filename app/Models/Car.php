@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\BelongsToUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,10 +10,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Car extends Model
 {
-    use HasFactory;
+    use HasFactory, BelongsToUser;
 
     protected $fillable = [
-      'make', 'model', 'year', 'user_id'
+      'make', 'model', 'year'
     ];
 
     public function vehikl(): HasMany

@@ -21,8 +21,8 @@ class CarController extends Controller
     public function store(Request $request)
     {
         $selectedCar = Car::create(array_merge(
-            $request->only('make', 'model', 'year'),
-            ['user_id' => auth()->id()]
+            $request->only('make', 'model', 'year')
+//            , ['user_id' => auth()->id()]
         ));
         return view('dashboard', compact('selectedCar'));
     }
