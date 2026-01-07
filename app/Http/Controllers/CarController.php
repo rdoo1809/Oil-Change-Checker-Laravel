@@ -10,12 +10,11 @@ class CarController extends Controller
 {
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::all()->where('user_id', auth()->id());
         $selectedCar = \request('car_id') ? Car::find(\request('car_id')) : null;
         $addNewCar = \request('add_new_car') ? true : false;
         return view('dashboard', compact('cars', 'selectedCar', 'addNewCar'));
     }
-
 
     public function store(Request $request)
     {
