@@ -17,16 +17,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->controller(CarController::class)->group(function () {
-    Route::get('/cars', 'index')->name('cars.index');
-    Route::post('/add-car', 'store')->name('cars.store');
-    Route::get('/cars/{car}', 'show')->name('cars.show');
-});
-
-Route::middleware('auth')->controller(VehiklController::class)->group(function () {
-    Route::post('/check', 'store')->name('vehikl.store');
-    Route::get('/result/{vehikl}', 'show')->name('vehikl.show');
-    Route::get('/history', 'index')->name('vehikl.index');
+Route::middleware('auth')->group(function () {
+   Route::controller(VehiklController::class)->group(function () {
+       Route::post('/check', 'store')->name('vehikl.store');
+       Route::get('/result/{vehikl}', 'show')->name('vehikl.show');
+       Route::get('/history', 'index')->name('vehikl.index');
+   });
+    Route::controller(CarController::class)->group(function () {
+        Route::get('/cars', 'index')->name('cars.index');
+        Route::post('/add-car', 'store')->name('cars.store');
+        Route::get('/cars/{car}', 'show')->name('cars.show');
+    });
 });
 
 require __DIR__ . '/auth.php';
