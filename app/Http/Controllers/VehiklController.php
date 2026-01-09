@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\VehiklRequest;
 use App\Models\Vehikl;
-use Carbon\Carbon;
+use App\Services\OilChangeService;
 
 class VehiklController extends Controller
 {
+    public function index()
+    {
+        $vehikls = Vehikl::all();
+        $oilChangeService = app(OilChangeService::class);
+        return view('history', compact('vehikls', 'oilChangeService'));
+    }
+
     public function store(VehiklRequest $request)
     {
         $vehikl = Vehikl::create($request->validated());
@@ -16,14 +23,16 @@ class VehiklController extends Controller
 
     public function show(Vehikl $vehikl)
     {
-        $due = $vehikl->isDue();
-
+        $due = app(OilChangeService::class)->isDue($vehikl);
         return view('show', [
             'vehikl' => $vehikl,
             'due' => $due,
             'message' => $due ? 'Oil change is due.' : 'Oil change is not due.',
         ]);
     }
+
+
+
 //        return response()->json([
 //            'id' => $vehikl->id,
 //            'current_odometer' => $vehikl->current_odometer,
