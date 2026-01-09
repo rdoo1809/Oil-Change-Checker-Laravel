@@ -18,13 +18,16 @@ WORKDIR /var/www
 COPY . .
 
 # Install PHP dependencies
-RUN composer update --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Ensure SQLite database exists
 RUN touch database/database.sqlite
 
 # Expose the port that Render provides
 EXPOSE 8000
+
+RUN mkdir -p storage/framework/{cache,sessions,views} \
+    && chmod -R 775 storage bootstrap/cache
 
 # Start Laravel with migrations
 CMD php artisan migrate --force && php -S 0.0.0.0:$PORT -t public
