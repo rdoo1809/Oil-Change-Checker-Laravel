@@ -33,15 +33,43 @@ https://oil-change-checker-laravel.onrender.com/
 
 ## Features
 
-- Submit car details via a simple web form:
-    - Current odometer
-    - Previous odometer
-    - Date of previous oil change
-- Backend validation for all inputs
-- Automatic calculation of whether the car is due for an oil change
-- Displays the result and submitted values on a dedicated result page
-- “Check another car” link for repeated submissions
-- Fully tested backend with PHPUnit feature tests
+- **User Authentication**
+    - Secure registration, login, and logout using Laravel Breeze
+    - Only authenticated users can access the dashboard and manage data
+
+- **Car Management**
+    - Create and manage cars (make, model, year)
+    - Each car belongs to a specific user
+    - Users only see and interact with their own cars
+
+- **Oil Change Checks**
+    - Submit oil change checks for a selected car
+    - Inputs include:
+        - Current odometer
+        - Odometer at previous oil change
+        - Date of previous oil change
+    - A check is considered **due** if:
+        - More than 5,000 km have been driven **or**
+        - More than 6 months have passed
+
+- **History & Results**
+    - View a read-only history of past oil change checks
+    - Dedicated result page per submission
+    - Data persists across refreshes
+
+- **Clean Architecture**
+    - Business logic extracted into a service class
+    - Reusable Blade components for form inputs and errors
+    - Model traits used for shared behavior (e.g. user ownership)
+
+- **Validation & Security**
+    - Centralized request validation via Form Requests
+    - Authorization enforced via middleware
+    - Relationships enforced at the database and model level
+
+- **Testing**
+    - Feature tests using PHPUnit
+    - Tests cover validation, record creation, and user-scoped data access
 
 ---
 
